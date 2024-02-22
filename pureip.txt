@@ -1,8 +1,8 @@
-199.15.76.35:443#HK-Shanghai Huajuan Information Technology Co. Ltd.
-8.218.3.12:2053#HK-45102-Alibaba
-110.72.99.106:49001#CN-Nearoute
-125.227.215.155:10453#TW-Chunghwa Telecom
-43.159.49.198:5532#SG-Tencent cloud computing
-45.66.130.112:19190#JP-xTom
-199.180.116.54:50005#US-IT7 Networks Inc
+199.15.76.35:443#-Shanghai Huajuan Information Technology Co. Ltd.
+8.218.3.12:2053#-45102-Alibaba
+110.72.99.106:49001#-Nearoute
+125.227.215.155:10453#-Chunghwa Telecom
+43.159.49.198:5532#-Tencent cloud computing
+45.66.130.112:19190#-xTom
+199.180.116.54:50005#-IT7 Networks Inc
 

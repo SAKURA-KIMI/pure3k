@@ -25,7 +25,7 @@ jobs:
 
       - name: Process File
         run: |
-          sed 's/,/:/' rawfile.txt | sed 's/,/#/' | cut -d'#' -f1-2 > pureip.txt          
+          sed 's/,/:/' rawfile.txt | sed 's/,/#/' | sed 's/\(.*#\).\{2\}\(.*\)/\1\2/' > pureip.txt          
                    
       - name: Commit and Push
         run: |

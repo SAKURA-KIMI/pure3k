@@ -1,0 +1,44 @@
+name: PRUEIP Action
+on:
+  workflow_dispatch:
+  schedule:
+    - cron:  '10 */4 * * *'
+env:
+  TZ: Asia/Shanghai
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set Timezone
+        run: |
+            DATE=$(date "+%Y/%m/%d %H:%M:%S")
+            echo "DATE=${DATE}" >> $GITHUB_ENV
+            
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+         token: ${{ secrets.TOKEN }}
+        
+      - name: Download Page Content
+        run: curl '${{ secrets.HOSTS1 }}' -o rawfile.txt
+
+      - name: Process File
+        run: |
+          sed 's/,/:/' rawfile.txt | sed 's/,/#/' | cut -d'#' -f1-2 > pureip.txt          
+                   
+      - name: Commit and Push
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add pureip.txt
+          git commit -m "Add new mypureip, ${{ env.DATE }}"
+          git push
+          
+      - name: Delete old workflow runs
+        uses: MajorScruffy/delete-old-workflow-runs@v0.3.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        with:
+          repository: ${{ github.repository }}
+          older-than-seconds: 3600  
